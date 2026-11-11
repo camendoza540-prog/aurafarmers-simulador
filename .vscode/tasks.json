@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Instalar todo (primera vez)",
+      "type": "shell",
+      "command": "./setup.sh",
+      "windows": { "command": ".\\setup.bat" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: Django",
+      "type": "shell",
+      "command": "${workspaceFolder}/backend/.venv/bin/python manage.py runserver 8000",
+      "windows": { "command": "${workspaceFolder}\\backend\\.venv\\Scripts\\python.exe manage.py runserver 8000" },
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "group": "servidores", "panel": "dedicated" }
+    },
+    {
+      "label": "Frontend: Vite",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "group": "servidores", "panel": "dedicated" }
+    },
+    {
+      "label": "Ejecutar todo",
+      "dependsOn": ["Backend: Django", "Frontend: Vite"],
+      "dependsOrder": "parallel",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "Pruebas del backend",
+      "type": "shell",
+      "command": "${workspaceFolder}/backend/.venv/bin/python manage.py test -v 2",
+      "windows": { "command": "${workspaceFolder}\\backend\\.venv\\Scripts\\python.exe manage.py test -v 2" },
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Reiniciar base de datos",
+      "type": "shell",
+      "command": "rm -f db.sqlite3 && .venv/bin/python manage.py migrate && .venv/bin/python manage.py seed",
+      "windows": { "command": "if (Test-Path db.sqlite3) { Remove-Item db.sqlite3 }; .\\.venv\\Scripts\\python.exe manage.py migrate; .\\.venv\\Scripts\\python.exe manage.py seed" },
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "problemMatcher": []
+    }
+  ]
+}

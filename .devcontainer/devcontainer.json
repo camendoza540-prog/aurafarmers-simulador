@@ -1,0 +1,22 @@
+{
+  // GitHub Codespaces: abre el repositorio en GitHub → Code → Codespaces → Create codespace.
+  // El entorno se instala solo (setup.sh). Luego, en la terminal: ./run.sh
+  "name": "Aura Farmers — Simulador de inversión",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+  },
+  "postCreateCommand": "bash setup.sh",
+  "postAttachCommand": "echo '\n  Listo. Ejecuta ./run.sh y abre la pestaña PORTS → puerto 5173.\n  Contraseñas de ejemplo: backend/credenciales_locales.txt\n'",
+  "forwardPorts": [5173, 8000],
+  "portsAttributes": {
+    "5173": { "label": "Aura Farmers (abrir este)", "onAutoForward": "openBrowser" },
+    "8000": { "label": "API Django", "onAutoForward": "silent" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance", "dbaeumer.vscode-eslint"]
+    }
+  },
+  "hostRequirements": { "cpus": 2, "memory": "4gb" }
+}
