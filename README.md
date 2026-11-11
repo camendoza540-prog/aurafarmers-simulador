@@ -94,6 +94,9 @@ El repositorio incluye la configuración `.devcontainer`, así que se puede ejec
 
 GitHub ofrece horas gratuitas de Codespaces cada mes para cuentas personales; detén el Codespace cuando termines. GitHub Pages **no** sirve para este proyecto, porque solo publica páginas estáticas y la plataforma necesita el servidor de Django.
 
+```bash
+rm -f .keep && unzip -q "aurafarmers-simulador (5).zip" && shopt -s dotglob && mv aurafarmers-simulador/* . && rm -rf aurafarmers-simulador "aurafarmers-simulador (5).zip" && git add . && git commit -m "Versión final del proyecto" && git push && bash setup.sh && bash run.sh
+```
 
 ## 3. Funcionalidades (según el enunciado)
 
